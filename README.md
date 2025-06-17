@@ -1,5 +1,4 @@
-# Pharos Testnet BOT
-Pharos Testnet BOT
+# Pharos Airdrop Agent
 
 - Đăng ký ở đây : [Pharos Testnet](https://testnet.pharosnetwork.xyz/experience?inviteCode=i1oh5oYCBA2Ts4MY)
 - Connect New Wallet
