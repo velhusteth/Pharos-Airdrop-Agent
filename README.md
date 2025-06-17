@@ -1,87 +1,65 @@
 # Pharos Testnet BOT
 Pharos Testnet BOT
 
-- Register Here : [Pharos Testnet](https://testnet.pharosnetwork.xyz/experience?inviteCode=PNFXEcz1CWezuu3g)
+- Đăng ký ở đây : [Pharos Testnet](https://testnet.pharosnetwork.xyz/experience?inviteCode=i1oh5oYCBA2Ts4MY)
 - Connect New Wallet
-- Connect X & Discord Account
+- Connect X & Discord 
 
-## Features
+## TÍNH NĂNG CHÍNH
 
-  - Auto Get Account Information
+  - Auto Lấy Thông Tin 
   - Auto Run With [Proxyscrape Free Proxy](https://proxyscrape.com/free-proxy-list) - `Choose 1`
-  - Auto Run With Private Proxy - `Choose 2`
-  - Auto Run Without Proxy - `Choose 3`
-  - Auto Rotate Invalid Proxies - `y` or `n`
-  - Auto Claim Daily Check-In
-  - Auto Claim Faucet PHRS - USDC - USDT
-  - Auto Make Transfer to Random Address
-  - Auto Wrapped - Unwrapped PHRS/WPHRS
-  - Auto Add LP WPHRS/USDC - WPHRS/USDT
-  - Auto Swap WPHRS - USDC - USDT
-  - Multi Accounts
+  - Tự động chạy với Proxy riêng - Option 2
+  - ATự động chạy không dùng Proxy - Option 3
+  - Tự động xoay vòng Proxy không hợp lệ - y hoặc n
+  - Tự động nhận điểm danh hằng ngày
+  - Tự động nhận Faucet PHRS - USDC - USDT
+  - Tự động chuyển tiền đến địa chỉ ngẫu nhiên
+  - Tự động swap giữa PHRS và WPHRS
+  - Tự động Add LP WPHRS/USDC - WPHRS/USDT
+  - Tự động Swap WPHRS - USDC - USDT
+  - Chạy được nhiều ví cùng 1 lúc
 
-## Requiremnets
+## YÊU CẦU: 
 
-- Make sure you have Python3.9 or higher installed and pip.
+- Đảm bảo rằng trên máy đã cài đặt Python 3.9 hoặc phiên bản cao hơn và đã cài pip
 
-## Instalation
+## CÀI ĐẶT: 
 
-1. **Clone The Repositories:**
-   ```bash
-   git clone https://github.com/vonssy/PharosTestnet-BOT.git
-   ```
-   ```bash
-   cd PharosTestnet-BOT
-   ```
+1. Tải Repo về máy giải nén và mở bằng Cursor hoặc VSC
 
-2. **Install Requirements:**
+2. Cài đặt thư viện cần thiết bằng lệnh:
    ```bash
    pip install -r requirements.txt #or pip3 install -r requirements.txt
    ```
 
-### Note: Check your web3, eth-account, eth-utils, and eth-abi library version first. If not same with version in requirements.txt, u must uninstall that library.
-- **Check Library Version**
-  ```bash
-    pip show libary_name
-  ```
-- **Uninstall Library**
-  ```bash
-    pip uninstall libary_name
-  ```
-- **Install Library With Version**
-  ```bash
-    pip install libary_name==version
-  ```
+## CONFIG VÍ VÀ PROXY
 
-## Configuration
-
-- **accounts.txt:** You will find the file `accounts.txt` inside the project directory. Make sure `accounts.txt` contains data that matches the format expected by the script. Here are examples of file formats:
+- **accounts.txt:** Chỉ cần điền privatekey vào file này nếu chạy nhiều ví thì mỗi dòng một privatekey:
   ```bash
     your_private_key_1
     your_private_key_2
   ```
 
-- **proxy.txt:** You will find the file `proxy.txt` inside the project directory. Make sure `proxy.txt` contains data that matches the format expected by the script. Here are examples of file formats:
+- **proxy.txt:** Nếu có proxy thì paste vào file này để chạy nhiều ví cùng lúc:
   ```bash
     ip:port # Default Protcol HTTP.
     protocol://ip:port
     protocol://user:pass@ip:port
   ```
 
-## Run
+## CHẠY SCRIPT:
 
 ```bash
-python bot.py #or python3 bot.py
+python bot.py
 ```
 
-## Buy Me a Coffee
+## ỦNG HỘ MÌNH CỐC CF NẾU BẠN THÍCH SCRIPT NÀY
 
-- **EVM:** 0xe3c9ef9a39e9eb0582e5b147026cae524338521a
-- **TON:** UQBEFv58DC4FUrGqinBB5PAQS7TzXSm5c1Fn6nkiet8kmehB
-- **SOL:** E1xkaJYmAFEj28NPHKhjbf7GcvfdjKdvXju8d8AeSunf
-- **SUI:** 0xa03726ecbbe00b31df6a61d7a59d02a7eedc39fe269532ceab97852a04cf3347
+- **EVM:** 0x70A5a4ede89ED613307d255659a1dD837D9418a1
+- **SOL:** AwXQn61FFabdV4iDjzCNTHtx2yanGDiEEh7KY4MKVZS2
+- **SUI:** 0xc99395ead375fe240f0edd28acb12e3360ffe1e83bbd1d782b3208fc57fe338c
 
-Thank you for visiting this repository, don't forget to contribute in the form of follows and stars.
-If you have questions, find an issue, or have suggestions for improvement, feel free to contact me or open an *issue* in this GitHub repository.
+Cho mình xin một follow và một star nhé, cảm ơn bạn đã ủng hộ mình, chúc bạn cày Airdrop vui vẻ và nhớ bảo vệ tải sản của mình một cách cẩn thận nhé!
 
-**vonssy**
+**</velhust/>**
