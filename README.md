@@ -7,7 +7,7 @@
 ## TÍNH NĂNG CHÍNH
 
   - Auto Lấy Thông Tin 
-  - Auto Run With [Proxyscrape Free Proxy](https://proxyscrape.com/free-proxy-list) - `Choose 1`
+  - Tự động chạy với [Proxyscrape Free Proxy](https://proxyscrape.com/free-proxy-list) - `Choose 1`
   - Tự động chạy với Proxy riêng - Option 2
   - ATự động chạy không dùng Proxy - Option 3
   - Tự động xoay vòng Proxy không hợp lệ - y hoặc n
