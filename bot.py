@@ -115,10 +115,10 @@ class PharosTestnet:
     def welcome(self):
         print(
             f"""
-        {Fore.GREEN + Style.BRIGHT}Pharos Testnet{Fore.BLUE + Style.BRIGHT} Airdrop Agent
+        {Fore.GREEN + Style.BRIGHT}Pharos Testnet{Fore.BLUE + Style.BRIGHT} Bot Airdrop
             """
             f"""
-        {Fore.GREEN + Style.BRIGHT}Velhust {Fore.YELLOW + Style.BRIGHT} Airdrop Agent
+        {Fore.GREEN + Style.BRIGHT}Velhust {Fore.YELLOW + Style.BRIGHT} Bot Airdrop
             """
         )
 
@@ -140,22 +140,22 @@ class PharosTestnet:
                         self.proxies = [line.strip() for line in content.splitlines() if line.strip()]
             else:
                 if not os.path.exists(filename):
-                    self.log(f"{Fore.RED + Style.BRIGHT}File {filename} Not Found.{Style.RESET_ALL}")
+                    self.log(f"{Fore.RED + Style.BRIGHT}Không tìm thấy file {filename}.{Style.RESET_ALL}")
                     return
                 with open(filename, 'r') as f:
                     self.proxies = [line.strip() for line in f.read().splitlines() if line.strip()]
             
             if not self.proxies:
-                self.log(f"{Fore.RED + Style.BRIGHT}No Proxies Found.{Style.RESET_ALL}")
+                self.log(f"{Fore.RED + Style.BRIGHT}Không tìm thấy proxy nào.{Style.RESET_ALL}")
                 return
 
             self.log(
-                f"{Fore.GREEN + Style.BRIGHT}Proxies Total  : {Style.RESET_ALL}"
+                f"{Fore.GREEN + Style.BRIGHT}Tổng số Proxy : {Style.RESET_ALL}"
                 f"{Fore.WHITE + Style.BRIGHT}{len(self.proxies)}{Style.RESET_ALL}"
             )
         
         except Exception as e:
-            self.log(f"{Fore.RED + Style.BRIGHT}Failed To Load Proxies: {e}{Style.RESET_ALL}")
+            self.log(f"{Fore.RED + Style.BRIGHT}Không thể tải proxy: {e}{Style.RESET_ALL}")
             self.proxies = []
 
     def check_proxy_schemes(self, proxies):
@@ -189,8 +189,8 @@ class PharosTestnet:
             return address
         except Exception as e:
             self.log(
-                f"{Fore.CYAN+Style.BRIGHT}Status    :{Style.RESET_ALL}"
-                f"{Fore.RED+Style.BRIGHT} Generate Address Failed {Style.RESET_ALL}"
+                f"{Fore.CYAN+Style.BRIGHT}Trạng thái :{Style.RESET_ALL}"
+                f"{Fore.RED+Style.BRIGHT} Tạo địa chỉ thất bại {Style.RESET_ALL}"
                 f"{Fore.MAGENTA+Style.BRIGHT}-{Style.RESET_ALL}"
                 f"{Fore.YELLOW+Style.BRIGHT} {str(e)} {Style.RESET_ALL}                  "
             )
@@ -205,8 +205,8 @@ class PharosTestnet:
             return signature
         except Exception as e:
             self.log(
-                f"{Fore.CYAN+Style.BRIGHT}Status    :{Style.RESET_ALL}"
-                f"{Fore.RED+Style.BRIGHT} Generate Signature Failed {Style.RESET_ALL}"
+                f"{Fore.CYAN+Style.BRIGHT}Trạng thái :{Style.RESET_ALL}"
+                f"{Fore.RED+Style.BRIGHT} Tạo chữ ký thất bại {Style.RESET_ALL}"
                 f"{Fore.MAGENTA+Style.BRIGHT}-{Style.RESET_ALL}"
                 f"{Fore.YELLOW+Style.BRIGHT} {str(e)} {Style.RESET_ALL}                  "
             )
@@ -312,7 +312,7 @@ class PharosTestnet:
                 if attempt < retries - 1:
                     await asyncio.sleep(3)
                     continue
-                raise Exception(f"Failed to Connect to RPC: {str(e)}")
+                raise Exception(f"Không thể kết nối đến RPC: {str(e)}")
         
     async def get_token_balance(self, address: str, contract_address: str, use_proxy: bool):
         try:
@@ -498,7 +498,7 @@ class PharosTestnet:
             
             return True
         except Exception as e:
-            raise Exception(f"Approving Token Contract Failed: {str(e)}")
+            raise Exception(f"Phê duyệt hợp đồng token thất bại: {str(e)}")
 
     async def perform_add_liquidity(self, account: str, address: str, add_lp_option: str, token0: str, token1: str, amount0: float, amount1: float, use_proxy: bool):
         try:
@@ -590,7 +590,7 @@ class PharosTestnet:
 
             return multicall_data
         except Exception as e:
-            raise Exception(f"Generate Multicall Data Failed: {str(e)}")
+            raise Exception(f"Tạo dữ liệu multicall thất bại: {str(e)}")
         
     async def perform_swap(self, account: str, address: str, from_token: str, to_token: str, swap_amount: float, use_proxy: bool):
         try:
@@ -638,9 +638,9 @@ class PharosTestnet:
             print(
                 f"{Fore.CYAN + Style.BRIGHT}[ {datetime.now().astimezone(wib).strftime('%x %X %Z')} ]{Style.RESET_ALL}"
                 f"{Fore.WHITE + Style.BRIGHT} | {Style.RESET_ALL}"
-                f"{Fore.BLUE + Style.BRIGHT}Wait For{Style.RESET_ALL}"
+                f"{Fore.BLUE + Style.BRIGHT}Chờ{Style.RESET_ALL}"
                 f"{Fore.WHITE + Style.BRIGHT} {remaining} {Style.RESET_ALL}"
-                f"{Fore.BLUE + Style.BRIGHT}Seconds For Next Tx...{Style.RESET_ALL}",
+                f"{Fore.BLUE + Style.BRIGHT}giây cho giao dịch tiếp theo...{Style.RESET_ALL}",
                 end="\r",
                 flush=True
             )
@@ -649,373 +649,373 @@ class PharosTestnet:
     def print_question(self):
         while True:
             try:
-                print(f"{Fore.GREEN + Style.BRIGHT}Select Option:{Style.RESET_ALL}")
-                print(f"{Fore.WHITE + Style.BRIGHT}1. Check-In - Claim PHRS Faucet{Style.RESET_ALL}")
-                print(f"{Fore.WHITE + Style.BRIGHT}2. Send To Friends{Style.RESET_ALL}")
-                print(f"{Fore.WHITE + Style.BRIGHT}3. Wrapped - Unwrapped{Style.RESET_ALL}")
-                print(f"{Fore.WHITE + Style.BRIGHT}4. Add Liquidity Pool{Style.RESET_ALL}")
+                print(f"{Fore.GREEN + Style.BRIGHT}Chọn tùy chọn:{Style.RESET_ALL}")
+                print(f"{Fore.WHITE + Style.BRIGHT}1. Check-In - Nhận PHRS Faucet{Style.RESET_ALL}")
+                print(f"{Fore.WHITE + Style.BRIGHT}2. Gửi cho bạn bè{Style.RESET_ALL}")
+                print(f"{Fore.WHITE + Style.BRIGHT}3. Wrap - Unwrap{Style.RESET_ALL}")
+                print(f"{Fore.WHITE + Style.BRIGHT}4. Thêm thanh khoản{Style.RESET_ALL}")
                 print(f"{Fore.WHITE + Style.BRIGHT}5. Swap WPHRS - USDC - USDT{Style.RESET_ALL}")
-                print(f"{Fore.WHITE + Style.BRIGHT}6. Run All Features{Style.RESET_ALL}")
-                option = int(input(f"{Fore.BLUE + Style.BRIGHT}Choose [1/2/3/4/5/6] -> {Style.RESET_ALL}").strip())
+                print(f"{Fore.WHITE + Style.BRIGHT}6. Chạy tất cả tính năng{Style.RESET_ALL}")
+                option = int(input(f"{Fore.BLUE + Style.BRIGHT}Chọn [1/2/3/4/5/6] -> {Style.RESET_ALL}").strip())
 
                 if option in [1, 2, 3, 4, 5, 6]:
                     option_type = (
-                        "Check-In - Claim PHRS Faucet" if option == 1 else 
-                        "Send To Friends" if option == 2 else 
-                        "Wrapped - Unwrapped" if option == 3 else
-                        "Add Liquidity Pool" if option == 4 else
+                        "Check-In - Nhận PHRS Faucet" if option == 1 else 
+                        "Gửi cho bạn bè" if option == 2 else 
+                        "Wrap - Unwrap" if option == 3 else
+                        "Thêm thanh khoản" if option == 4 else
                         "Swap WPHRS - USDC - USDT" if option == 5 else
-                        "Run All Features"
+                        "Chạy tất cả tính năng"
                     )
-                    print(f"{Fore.GREEN + Style.BRIGHT}{option_type} Selected.{Style.RESET_ALL}")
+                    print(f"{Fore.GREEN + Style.BRIGHT}{option_type} đã được chọn.{Style.RESET_ALL}")
                     break
                 else:
-                    print(f"{Fore.RED + Style.BRIGHT}Please enter either 1, 2, 3, 4, 5 or 6.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Vui lòng nhập 1, 2, 3, 4, 5 hoặc 6.{Style.RESET_ALL}")
             except ValueError:
-                print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number (1, 2, 3, 4, 5 or 6).{Style.RESET_ALL}")
+                print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số (1, 2, 3, 4, 5 hoặc 6).{Style.RESET_ALL}")
 
         if option == 2:
             while True:
                 try:
-                    tx_count = int(input(f"{Fore.YELLOW + Style.BRIGHT}How Many Times Do You Want To Make a Transfer? -> {Style.RESET_ALL}").strip())
+                    tx_count = int(input(f"{Fore.YELLOW + Style.BRIGHT}Bạn muốn thực hiện bao nhiêu lần chuyển? -> {Style.RESET_ALL}").strip())
                     if tx_count > 0:
                         self.tx_count = tx_count
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Please enter positive number.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Vui lòng nhập số dương.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số.{Style.RESET_ALL}")
 
             while True:
                 try:
-                    tx_amount = float(input(f"{Fore.YELLOW + Style.BRIGHT}Enter Amount for Each Transfers [1 or 0.01 or 0.001, etc in decimals] -> {Style.RESET_ALL}").strip())
+                    tx_amount = float(input(f"{Fore.YELLOW + Style.BRIGHT}Nhập số lượng cho mỗi lần chuyển [1 hoặc 0.01 hoặc 0.001, v.v. theo thập phân] -> {Style.RESET_ALL}").strip())
                     if tx_amount > 0:
                         self.tx_amount = tx_amount
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Amount must be greater than 0.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Số lượng phải lớn hơn 0.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a float or decimal number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số thập phân.{Style.RESET_ALL}")
 
             while True:
                 try:
-                    min_delay = int(input(f"{Fore.YELLOW + Style.BRIGHT}Min Delay Each Tx -> {Style.RESET_ALL}").strip())
+                    min_delay = int(input(f"{Fore.YELLOW + Style.BRIGHT}Độ trễ tối thiểu mỗi giao dịch -> {Style.RESET_ALL}").strip())
                     if min_delay >= 0:
                         self.min_delay = min_delay
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Min Delay must be >= 0.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Độ trễ tối thiểu phải >= 0.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số.{Style.RESET_ALL}")
 
             while True:
                 try:
-                    max_delay = int(input(f"{Fore.YELLOW + Style.BRIGHT}Max Delay Each Tx -> {Style.RESET_ALL}").strip())
+                    max_delay = int(input(f"{Fore.YELLOW + Style.BRIGHT}Độ trễ tối đa mỗi giao dịch -> {Style.RESET_ALL}").strip())
                     if max_delay >= min_delay:
                         self.max_delay = max_delay
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Min Delay must be >= Min Delay.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Độ trễ tối đa phải >= Độ trễ tối thiểu.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số.{Style.RESET_ALL}")
 
         elif option == 3:
             while True:
                 try:
-                    print(f"{Fore.GREEN + Style.BRIGHT}Select Option:{Style.RESET_ALL}")
-                    print(f"{Fore.WHITE + Style.BRIGHT}1. Wrapped PHRS to WPHRS{Style.RESET_ALL}")
-                    print(f"{Fore.WHITE + Style.BRIGHT}2. Unwrapped WPHRS to PHRS{Style.RESET_ALL}")
-                    wrap_option = int(input(f"{Fore.BLUE + Style.BRIGHT}Choose [1/2] -> {Style.RESET_ALL}").strip())
+                    print(f"{Fore.GREEN + Style.BRIGHT}Chọn tùy chọn:{Style.RESET_ALL}")
+                    print(f"{Fore.WHITE + Style.BRIGHT}1. Wrap PHRS thành WPHRS{Style.RESET_ALL}")
+                    print(f"{Fore.WHITE + Style.BRIGHT}2. Unwrap WPHRS thành PHRS{Style.RESET_ALL}")
+                    wrap_option = int(input(f"{Fore.BLUE + Style.BRIGHT}Chọn [1/2] -> {Style.RESET_ALL}").strip())
 
                     if wrap_option in [1, 2]:
                         wrap_type = (
-                            "Wrapped PHRS to WPHRS" if wrap_option == 1 else 
-                            "Unwrapped WPHRS to PHRS"
+                            "Wrap PHRS thành WPHRS" if wrap_option == 1 else 
+                            "Unwrap WPHRS thành PHRS"
                         )
-                        print(f"{Fore.GREEN + Style.BRIGHT}{wrap_type} Selected.{Style.RESET_ALL}")
+                        print(f"{Fore.GREEN + Style.BRIGHT}{wrap_type} đã được chọn.{Style.RESET_ALL}")
                         self.wrap_option = wrap_option
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Please enter either 1 or 2.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Vui lòng nhập 1 hoặc 2.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number (1 or 2).{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số (1 hoặc 2).{Style.RESET_ALL}")
 
             while True:
                 try:
-                    wrap_amount = float(input(f"{Fore.YELLOW + Style.BRIGHT}Enter Amount [1 or 0.01 or 0.001, etc in decimals] -> {Style.RESET_ALL}").strip())
+                    wrap_amount = float(input(f"{Fore.YELLOW + Style.BRIGHT}Nhập số lượng [1 hoặc 0.01 hoặc 0.001, v.v. theo thập phân] -> {Style.RESET_ALL}").strip())
                     if wrap_amount > 0:
                         self.wrap_amount = wrap_amount
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Amount must be greater than 0.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Số lượng phải lớn hơn 0.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a float or decimal number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số thập phân.{Style.RESET_ALL}")
 
         elif option == 4:
             while True:
                 try:
-                    add_lp_count = int(input(f"{Fore.YELLOW + Style.BRIGHT}How Many Times Do You Want To Add Liquidity Pool? -> {Style.RESET_ALL}").strip())
+                    add_lp_count = int(input(f"{Fore.YELLOW + Style.BRIGHT}Bạn muốn thêm thanh khoản bao nhiêu lần? -> {Style.RESET_ALL}").strip())
                     if add_lp_count > 0:
                         self.add_lp_count = add_lp_count
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Please enter positive number.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Vui lòng nhập số dương.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số.{Style.RESET_ALL}")
 
             while True:
                 try:
-                    min_delay = int(input(f"{Fore.YELLOW + Style.BRIGHT}Min Delay Each Tx -> {Style.RESET_ALL}").strip())
+                    min_delay = int(input(f"{Fore.YELLOW + Style.BRIGHT}Độ trễ tối thiểu mỗi giao dịch -> {Style.RESET_ALL}").strip())
                     if min_delay >= 0:
                         self.min_delay = min_delay
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Min Delay must be >= 0.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Độ trễ tối thiểu phải >= 0.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số.{Style.RESET_ALL}")
 
             while True:
                 try:
-                    max_delay = int(input(f"{Fore.YELLOW + Style.BRIGHT}Max Delay Each Tx -> {Style.RESET_ALL}").strip())
+                    max_delay = int(input(f"{Fore.YELLOW + Style.BRIGHT}Độ trễ tối đa mỗi giao dịch -> {Style.RESET_ALL}").strip())
                     if max_delay >= min_delay:
                         self.max_delay = max_delay
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Min Delay must be >= Min Delay.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Độ trễ tối đa phải >= Độ trễ tối thiểu.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số.{Style.RESET_ALL}")
 
         elif option == 5:
             while True:
                 try:
-                    swap_count = int(input(f"{Fore.YELLOW + Style.BRIGHT}How Many Times Do You Want To Make a Swap? -> {Style.RESET_ALL}").strip())
+                    swap_count = int(input(f"{Fore.YELLOW + Style.BRIGHT}Bạn muốn thực hiện bao nhiêu lần swap? -> {Style.RESET_ALL}").strip())
                     if swap_count > 0:
                         self.swap_count = swap_count
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Please enter positive number.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Vui lòng nhập số dương.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số.{Style.RESET_ALL}")
 
             while True:
                 try:
-                    wphrs_amount = float(input(f"{Fore.YELLOW + Style.BRIGHT}WPHRS Swap Amount? [1 or 0.01 or 0.001, etc in decimals] -> {Style.RESET_ALL}").strip())
+                    wphrs_amount = float(input(f"{Fore.YELLOW + Style.BRIGHT}Số lượng WPHRS để swap? [1 hoặc 0.01 hoặc 0.001, v.v. theo thập phân] -> {Style.RESET_ALL}").strip())
                     if wphrs_amount > 0:
                         self.wphrs_amount = wphrs_amount
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Amount must be greater than 0.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Số lượng phải lớn hơn 0.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số.{Style.RESET_ALL}")
 
             while True:
                 try:
-                    usdc_amount = float(input(f"{Fore.YELLOW + Style.BRIGHT}USDC Swap Amount? [1 or 0.01 or 0.001, etc in decimals] -> {Style.RESET_ALL}").strip())
+                    usdc_amount = float(input(f"{Fore.YELLOW + Style.BRIGHT}Số lượng USDC để swap? [1 hoặc 0.01 hoặc 0.001, v.v. theo thập phân] -> {Style.RESET_ALL}").strip())
                     if usdc_amount > 0:
                         self.usdc_amount = usdc_amount
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Amount must be greater than 0.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Số lượng phải lớn hơn 0.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số.{Style.RESET_ALL}")
 
             while True:
                 try:
-                    usdt_amount = float(input(f"{Fore.YELLOW + Style.BRIGHT}USDT Swap Amount? [1 or 0.01 or 0.001, etc in decimals] -> {Style.RESET_ALL}").strip())
+                    usdt_amount = float(input(f"{Fore.YELLOW + Style.BRIGHT}Số lượng USDT để swap? [1 hoặc 0.01 hoặc 0.001, v.v. theo thập phân] -> {Style.RESET_ALL}").strip())
                     if usdt_amount > 0:
                         self.usdt_amount = usdt_amount
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Amount must be greater than 0.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Số lượng phải lớn hơn 0.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số.{Style.RESET_ALL}")
 
             while True:
                 try:
-                    min_delay = int(input(f"{Fore.YELLOW + Style.BRIGHT}Min Delay Each Tx -> {Style.RESET_ALL}").strip())
+                    min_delay = int(input(f"{Fore.YELLOW + Style.BRIGHT}Độ trễ tối thiểu mỗi giao dịch -> {Style.RESET_ALL}").strip())
                     if min_delay >= 0:
                         self.min_delay = min_delay
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Min Delay must be >= 0.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Độ trễ tối thiểu phải >= 0.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số.{Style.RESET_ALL}")
 
             while True:
                 try:
-                    max_delay = int(input(f"{Fore.YELLOW + Style.BRIGHT}Max Delay Each Tx -> {Style.RESET_ALL}").strip())
+                    max_delay = int(input(f"{Fore.YELLOW + Style.BRIGHT}Độ trễ tối đa mỗi giao dịch -> {Style.RESET_ALL}").strip())
                     if max_delay >= min_delay:
                         self.max_delay = max_delay
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Min Delay must be >= Min Delay.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Độ trễ tối đa phải >= Độ trễ tối thiểu.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số.{Style.RESET_ALL}")
 
         elif option == 6:
             while True:
                 try:
-                    tx_count = int(input(f"{Fore.YELLOW + Style.BRIGHT}How Many Times Do You Want To Make a Transfer? -> {Style.RESET_ALL}").strip())
+                    tx_count = int(input(f"{Fore.YELLOW + Style.BRIGHT}Bạn muốn thực hiện bao nhiêu lần chuyển? -> {Style.RESET_ALL}").strip())
                     if tx_count > 0:
                         self.tx_count = tx_count
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Please enter positive number.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Vui lòng nhập số dương.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số.{Style.RESET_ALL}")
 
             while True:
                 try:
-                    tx_amount = float(input(f"{Fore.YELLOW + Style.BRIGHT}Enter Amount for Each Transfers [1 or 0.01 or 0.001, etc in decimals] -> {Style.RESET_ALL}").strip())
+                    tx_amount = float(input(f"{Fore.YELLOW + Style.BRIGHT}Nhập số lượng cho mỗi lần chuyển [1 hoặc 0.01 hoặc 0.001, v.v. theo thập phân] -> {Style.RESET_ALL}").strip())
                     if tx_amount > 0:
                         self.tx_amount = tx_amount
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Amount must be greater than 0.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Số lượng phải lớn hơn 0.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a float or decimal number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số thập phân.{Style.RESET_ALL}")
 
             while True:
                 try:
-                    print(f"{Fore.GREEN + Style.BRIGHT}Select Option:{Style.RESET_ALL}")
-                    print(f"{Fore.WHITE + Style.BRIGHT}1. Wrapped PHRS to WPHRS{Style.RESET_ALL}")
-                    print(f"{Fore.WHITE + Style.BRIGHT}2. Unwrapped WPHRS to PHRS{Style.RESET_ALL}")
-                    print(f"{Fore.WHITE + Style.BRIGHT}3. Skipped{Style.RESET_ALL}")
-                    wrap_option = int(input(f"{Fore.BLUE + Style.BRIGHT}Choose [1/2/3] -> {Style.RESET_ALL}").strip())
+                    print(f"{Fore.GREEN + Style.BRIGHT}Chọn tùy chọn:{Style.RESET_ALL}")
+                    print(f"{Fore.WHITE + Style.BRIGHT}1. Wrap PHRS thành WPHRS{Style.RESET_ALL}")
+                    print(f"{Fore.WHITE + Style.BRIGHT}2. Unwrap WPHRS thành PHRS{Style.RESET_ALL}")
+                    print(f"{Fore.WHITE + Style.BRIGHT}3. Bỏ qua{Style.RESET_ALL}")
+                    wrap_option = int(input(f"{Fore.BLUE + Style.BRIGHT}Chọn [1/2/3] -> {Style.RESET_ALL}").strip())
 
                     if wrap_option in [1, 2, 3]:
                         wrap_type = (
-                            "Wrapped PHRS to WPHRS" if wrap_option == 1 else 
-                            "Unwrapped WPHRS to PHRS" if wrap_option == 2 else
-                            "Skipped"
+                            "Wrap PHRS thành WPHRS" if wrap_option == 1 else 
+                            "Unwrap WPHRS thành PHRS" if wrap_option == 2 else
+                            "Bỏ qua"
                         )
-                        print(f"{Fore.GREEN + Style.BRIGHT}{wrap_type} Selected.{Style.RESET_ALL}")
+                        print(f"{Fore.GREEN + Style.BRIGHT}{wrap_type} đã được chọn.{Style.RESET_ALL}")
                         self.wrap_option = wrap_option
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Please enter either 1, 2, or 3.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Vui lòng nhập 1, 2, hoặc 3.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number (1, 2, or 3).{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số (1, 2, hoặc 3).{Style.RESET_ALL}")
 
             if wrap_option in [1, 2]:
                 while True:
                     try:
-                        wrap_amount = float(input(f"{Fore.YELLOW + Style.BRIGHT}Enter Amount [1 or 0.01 or 0.001, etc in decimals] -> {Style.RESET_ALL}").strip())
+                        wrap_amount = float(input(f"{Fore.YELLOW + Style.BRIGHT}Nhập số lượng [1 hoặc 0.01 hoặc 0.001, v.v. theo thập phân] -> {Style.RESET_ALL}").strip())
                         if wrap_amount > 0:
                             self.wrap_amount = wrap_amount
                             break
                         else:
-                            print(f"{Fore.RED + Style.BRIGHT}Amount must be greater than 0.{Style.RESET_ALL}")
+                            print(f"{Fore.RED + Style.BRIGHT}Số lượng phải lớn hơn 0.{Style.RESET_ALL}")
                     except ValueError:
-                        print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a float or decimal number.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số thập phân.{Style.RESET_ALL}")
 
             while True:
                 try:
-                    add_lp_count = int(input(f"{Fore.YELLOW + Style.BRIGHT}How Many Times Do You Want To Add Liquidity Pool? -> {Style.RESET_ALL}").strip())
+                    add_lp_count = int(input(f"{Fore.YELLOW + Style.BRIGHT}Bạn muốn thêm thanh khoản bao nhiêu lần? -> {Style.RESET_ALL}").strip())
                     if add_lp_count > 0:
                         self.add_lp_count = add_lp_count
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Please enter positive number.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Vui lòng nhập số dương.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số.{Style.RESET_ALL}")
 
             while True:
                 try:
-                    swap_count = int(input(f"{Fore.YELLOW + Style.BRIGHT}How Many Times Do You Want To Make a Swap? -> {Style.RESET_ALL}").strip())
+                    swap_count = int(input(f"{Fore.YELLOW + Style.BRIGHT}Bạn muốn thực hiện bao nhiêu lần swap? -> {Style.RESET_ALL}").strip())
                     if swap_count > 0:
                         self.swap_count = swap_count
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Please enter positive number.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Vui lòng nhập số dương.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số.{Style.RESET_ALL}")
 
             while True:
                 try:
-                    wphrs_amount = float(input(f"{Fore.YELLOW + Style.BRIGHT}WPHRS Swap Amount? [1 or 0.01 or 0.001, etc in decimals] -> {Style.RESET_ALL}").strip())
+                    wphrs_amount = float(input(f"{Fore.YELLOW + Style.BRIGHT}Số lượng WPHRS để swap? [1 hoặc 0.01 hoặc 0.001, v.v. theo thập phân] -> {Style.RESET_ALL}").strip())
                     if wphrs_amount > 0:
                         self.wphrs_amount = wphrs_amount
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Amount must be greater than 0.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Số lượng phải lớn hơn 0.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số.{Style.RESET_ALL}")
 
             while True:
                 try:
-                    usdc_amount = float(input(f"{Fore.YELLOW + Style.BRIGHT}USDC Swap Amount? [1 or 0.01 or 0.001, etc in decimals] -> {Style.RESET_ALL}").strip())
+                    usdc_amount = float(input(f"{Fore.YELLOW + Style.BRIGHT}Số lượng USDC để swap? [1 hoặc 0.01 hoặc 0.001, v.v. theo thập phân] -> {Style.RESET_ALL}").strip())
                     if usdc_amount > 0:
                         self.usdc_amount = usdc_amount
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Amount must be greater than 0.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Số lượng phải lớn hơn 0.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số.{Style.RESET_ALL}")
 
             while True:
                 try:
-                    usdt_amount = float(input(f"{Fore.YELLOW + Style.BRIGHT}USDT Swap Amount? [1 or 0.01 or 0.001, etc in decimals] -> {Style.RESET_ALL}").strip())
+                    usdt_amount = float(input(f"{Fore.YELLOW + Style.BRIGHT}Số lượng USDT để swap? [1 hoặc 0.01 hoặc 0.001, v.v. theo thập phân] -> {Style.RESET_ALL}").strip())
                     if usdt_amount > 0:
                         self.usdt_amount = usdt_amount
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Amount must be greater than 0.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Số lượng phải lớn hơn 0.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số.{Style.RESET_ALL}")
 
             while True:
                 try:
-                    min_delay = int(input(f"{Fore.YELLOW + Style.BRIGHT}Min Delay Each Tx -> {Style.RESET_ALL}").strip())
+                    min_delay = int(input(f"{Fore.YELLOW + Style.BRIGHT}Độ trễ tối thiểu mỗi giao dịch -> {Style.RESET_ALL}").strip())
                     if min_delay >= 0:
                         self.min_delay = min_delay
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Min Delay must be >= 0.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Độ trễ tối thiểu phải >= 0.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số.{Style.RESET_ALL}")
 
             while True:
                 try:
-                    max_delay = int(input(f"{Fore.YELLOW + Style.BRIGHT}Max Delay Each Tx -> {Style.RESET_ALL}").strip())
+                    max_delay = int(input(f"{Fore.YELLOW + Style.BRIGHT}Độ trễ tối đa mỗi giao dịch -> {Style.RESET_ALL}").strip())
                     if max_delay >= min_delay:
                         self.max_delay = max_delay
                         break
                     else:
-                        print(f"{Fore.RED + Style.BRIGHT}Min Delay must be >= Min Delay.{Style.RESET_ALL}")
+                        print(f"{Fore.RED + Style.BRIGHT}Độ trễ tối đa phải >= Độ trễ tối thiểu.{Style.RESET_ALL}")
                 except ValueError:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số.{Style.RESET_ALL}")
         
         while True:
             try:
-                print(f"{Fore.WHITE + Style.BRIGHT}1. Run With Free Proxyscrape Proxy{Style.RESET_ALL}")
-                print(f"{Fore.WHITE + Style.BRIGHT}2. Run With Private Proxy{Style.RESET_ALL}")
-                print(f"{Fore.WHITE + Style.BRIGHT}3. Run Without Proxy{Style.RESET_ALL}")
-                choose = int(input(f"{Fore.BLUE + Style.BRIGHT}Choose [1/2/3] -> {Style.RESET_ALL}").strip())
+                print(f"{Fore.WHITE + Style.BRIGHT}1. Chạy với Proxy Proxyscrape miễn phí{Style.RESET_ALL}")
+                print(f"{Fore.WHITE + Style.BRIGHT}2. Chạy với Proxy riêng{Style.RESET_ALL}")
+                print(f"{Fore.WHITE + Style.BRIGHT}3. Chạy không dùng Proxy{Style.RESET_ALL}")
+                choose = int(input(f"{Fore.BLUE + Style.BRIGHT}Chọn [1/2/3] -> {Style.RESET_ALL}").strip())
 
                 if choose in [1, 2, 3]:
                     proxy_type = (
-                        "With Free Proxyscrape" if choose == 1 else 
-                        "With Private" if choose == 2 else 
-                        "Without"
+                        "Với Proxy Proxyscrape miễn phí" if choose == 1 else 
+                        "Với Proxy riêng" if choose == 2 else 
+                        "Không dùng"
                     )
-                    print(f"{Fore.GREEN + Style.BRIGHT}Run {proxy_type} Proxy Selected.{Style.RESET_ALL}")
+                    print(f"{Fore.GREEN + Style.BRIGHT}Chạy {proxy_type} Proxy đã được chọn.{Style.RESET_ALL}")
                     break
                 else:
-                    print(f"{Fore.RED + Style.BRIGHT}Please enter either 1, 2 or 3.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Vui lòng nhập 1, 2 hoặc 3.{Style.RESET_ALL}")
             except ValueError:
-                print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number (1, 2 or 3).{Style.RESET_ALL}")
+                print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập số (1, 2 hoặc 3).{Style.RESET_ALL}")
 
         rotate = False
         if choose in [1, 2]:
             while True:
-                rotate = input(f"{Fore.BLUE + Style.BRIGHT}Rotate Invalid Proxy? [y/n] -> {Style.RESET_ALL}").strip()
+                rotate = input(f"{Fore.BLUE + Style.BRIGHT}Xoay vòng proxy không hợp lệ? [y/n] -> {Style.RESET_ALL}").strip()
 
                 if rotate in ["y", "n"]:
                     rotate = rotate == "y"
                     break
                 else:
-                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter 'y' or 'n'.{Style.RESET_ALL}")
+                    print(f"{Fore.RED + Style.BRIGHT}Đầu vào không hợp lệ. Nhập 'y' hoặc 'n'.{Style.RESET_ALL}")
 
         return option, choose, rotate
     
@@ -1190,24 +1190,24 @@ class PharosTestnet:
                 self.access_tokens[address] = login["data"]["jwt"]
 
                 self.log(
-                    f"{Fore.CYAN+Style.BRIGHT}Status    :{Style.RESET_ALL}"
-                    f"{Fore.GREEN+Style.BRIGHT} Login Success {Style.RESET_ALL}"
+                    f"{Fore.CYAN+Style.BRIGHT}Trạng thái :{Style.RESET_ALL}"
+                    f"{Fore.GREEN+Style.BRIGHT} Đăng nhập thành công {Style.RESET_ALL}"
                 )
                 return True
 
             if rotate_proxy:
                 self.log(
-                    f"{Fore.CYAN+Style.BRIGHT}Status    :{Style.RESET_ALL}"
-                    f"{Fore.RED+Style.BRIGHT} Login Failed, {Style.RESET_ALL}"
-                    f"{Fore.YELLOW+Style.BRIGHT} Rotating Proxy... {Style.RESET_ALL}"
+                    f"{Fore.CYAN+Style.BRIGHT}Trạng thái :{Style.RESET_ALL}"
+                    f"{Fore.RED+Style.BRIGHT} Đăng nhập thất bại, {Style.RESET_ALL}"
+                    f"{Fore.YELLOW+Style.BRIGHT} Đang xoay vòng Proxy... {Style.RESET_ALL}"
                 )
                 proxy = self.rotate_proxy_for_account(address)
                 await asyncio.sleep(5)
                 continue
 
             self.log(
-                f"{Fore.CYAN+Style.BRIGHT}Status    :{Style.RESET_ALL}"
-                f"{Fore.RED+Style.BRIGHT} Login Failed {Style.RESET_ALL}"
+                f"{Fore.CYAN+Style.BRIGHT}Trạng thái :{Style.RESET_ALL}"
+                f"{Fore.RED+Style.BRIGHT} Đăng nhập thất bại {Style.RESET_ALL}"
             )
             return False
     
@@ -1216,8 +1216,8 @@ class PharosTestnet:
         if tx_hash and block_number:
             explorer = f"https://testnet.pharosscan.xyz/tx/{tx_hash}"
             self.log(
-                f"{Fore.CYAN+Style.BRIGHT}     Status  :{Style.RESET_ALL}"
-                f"{Fore.GREEN+Style.BRIGHT} Perform Transfer Success {Style.RESET_ALL}"
+                f"{Fore.CYAN+Style.BRIGHT}     Trạng thái  :{Style.RESET_ALL}"
+                f"{Fore.GREEN+Style.BRIGHT} Thực hiện chuyển thành công {Style.RESET_ALL}"
             )
             self.log(
                 f"{Fore.CYAN+Style.BRIGHT}     Block   :{Style.RESET_ALL}"
@@ -1235,7 +1235,7 @@ class PharosTestnet:
             print(
                 f"{Fore.CYAN + Style.BRIGHT}[ {datetime.now().astimezone(wib).strftime('%x %X %Z')} ]{Style.RESET_ALL}"
                 f"{Fore.WHITE + Style.BRIGHT} | {Style.RESET_ALL}"
-                f"{Fore.YELLOW + Style.BRIGHT}Wait For Verifying Task...{Style.RESET_ALL}",
+                f"{Fore.YELLOW + Style.BRIGHT}Chờ xác minh nhiệm vụ...{Style.RESET_ALL}",
                 end="\r",
                 flush=True
             )
@@ -1246,13 +1246,13 @@ class PharosTestnet:
             verify = await self.verify_task(address, tx_hash, proxy)
             if verify and verify.get("code") == 0:
                 self.log(
-                    f"{Fore.CYAN+Style.BRIGHT}     Verify  :{Style.RESET_ALL}"
-                    f"{Fore.GREEN+Style.BRIGHT} Success {Style.RESET_ALL}                   "
+                    f"{Fore.CYAN+Style.BRIGHT}     Xác minh  :{Style.RESET_ALL}"
+                    f"{Fore.GREEN+Style.BRIGHT} Thành công {Style.RESET_ALL}                   "
                 )
             else:
                 self.log(
-                    f"{Fore.CYAN+Style.BRIGHT}     Verify  :{Style.RESET_ALL}"
-                    f"{Fore.RED+Style.BRIGHT} Failed {Style.RESET_ALL}                   "
+                    f"{Fore.CYAN+Style.BRIGHT}     Xác minh  :{Style.RESET_ALL}"
+                    f"{Fore.RED+Style.BRIGHT} Thất bại {Style.RESET_ALL}                   "
                 )
         else:
             self.log(
@@ -1265,8 +1265,8 @@ class PharosTestnet:
         if tx_hash and block_number:
             explorer = f"https://testnet.pharosscan.xyz/tx/{tx_hash}"
             self.log(
-                f"{Fore.CYAN+Style.BRIGHT}     Status  :{Style.RESET_ALL}"
-                f"{Fore.GREEN+Style.BRIGHT} Wrapped {self.wrap_amount} PHRS to WPHRS Success {Style.RESET_ALL}"
+                f"{Fore.CYAN+Style.BRIGHT}     Trạng thái  :{Style.RESET_ALL}"
+                f"{Fore.GREEN+Style.BRIGHT} Wrap {self.wrap_amount} PHRS thành WPHRS thành công {Style.RESET_ALL}"
             )
             self.log(
                 f"{Fore.CYAN+Style.BRIGHT}     Block   :{Style.RESET_ALL}"
@@ -1282,8 +1282,8 @@ class PharosTestnet:
             )
         else:
             self.log(
-                f"{Fore.CYAN+Style.BRIGHT}     Status  :{Style.RESET_ALL}"
-                f"{Fore.RED+Style.BRIGHT} Perform On-Chain Failed {Style.RESET_ALL}"
+                f"{Fore.CYAN+Style.BRIGHT}     Trạng thái  :{Style.RESET_ALL}"
+                f"{Fore.RED+Style.BRIGHT} Thực hiện On-Chain thất bại {Style.RESET_ALL}"
             )
 
     async def process_perform_unwrapped(self, account: str, address: str, use_proxy: bool):
@@ -1292,8 +1292,8 @@ class PharosTestnet:
             explorer = f"https://testnet.pharosscan.xyz/tx/{tx_hash}"
 
             self.log(
-                f"{Fore.CYAN+Style.BRIGHT}     Status  :{Style.RESET_ALL}"
-                f"{Fore.GREEN+Style.BRIGHT} Unwrapped {self.wrap_amount} WPHRS to PHRS Success {Style.RESET_ALL}"
+                f"{Fore.CYAN+Style.BRIGHT}     Trạng thái  :{Style.RESET_ALL}"
+                f"{Fore.GREEN+Style.BRIGHT} Unwrap {self.wrap_amount} WPHRS thành PHRS thành công {Style.RESET_ALL}"
             )
             self.log(
                 f"{Fore.CYAN+Style.BRIGHT}     Block   :{Style.RESET_ALL}"
@@ -1309,8 +1309,8 @@ class PharosTestnet:
             )
         else:
             self.log(
-                f"{Fore.CYAN+Style.BRIGHT}     Status  :{Style.RESET_ALL}"
-                f"{Fore.RED+Style.BRIGHT} Perform On-Chain Failed {Style.RESET_ALL}"
+                f"{Fore.CYAN+Style.BRIGHT}     Trạng thái  :{Style.RESET_ALL}"
+                f"{Fore.RED+Style.BRIGHT} Thực hiện On-Chain thất bại {Style.RESET_ALL}"
             )
 
     async def process_perform_add_liquidity(self, account: str, address: str, add_lp_option: str, token0: str, token1: str, amount0: float, amount1: float, ticker0: str, ticker1: str, use_proxy: bool):
@@ -1319,8 +1319,8 @@ class PharosTestnet:
             explorer = f"https://testnet.pharosscan.xyz/tx/{tx_hash}"
 
             self.log(
-                f"{Fore.CYAN+Style.BRIGHT}     Status  :{Style.RESET_ALL}"
-                f"{Fore.GREEN+Style.BRIGHT} Add LP For {amount0} {ticker0} / {amount1} {ticker1} Success {Style.RESET_ALL}"
+                f"{Fore.CYAN+Style.BRIGHT}     Trạng thái  :{Style.RESET_ALL}"
+                f"{Fore.GREEN+Style.BRIGHT} Thêm LP cho {amount0} {ticker0} / {amount1} {ticker1} thành công {Style.RESET_ALL}"
             )
             self.log(
                 f"{Fore.CYAN+Style.BRIGHT}     Block   :{Style.RESET_ALL}"
@@ -1336,8 +1336,8 @@ class PharosTestnet:
             )
         else:
             self.log(
-                f"{Fore.CYAN+Style.BRIGHT}     Status  :{Style.RESET_ALL}"
-                f"{Fore.RED+Style.BRIGHT} Perform On-Chain Failed {Style.RESET_ALL}"
+                f"{Fore.CYAN+Style.BRIGHT}     Trạng thái  :{Style.RESET_ALL}"
+                f"{Fore.RED+Style.BRIGHT} Thực hiện On-Chain thất bại {Style.RESET_ALL}"
             )
 
     async def process_perform_swap(self, account: str, address: str, from_token: str, to_token: str, from_ticker: str, to_ticker: str, swap_amount: float, use_proxy: bool):
@@ -1346,8 +1346,8 @@ class PharosTestnet:
             explorer = f"https://testnet.pharosscan.xyz/tx/{tx_hash}"
 
             self.log(
-                f"{Fore.CYAN+Style.BRIGHT}     Status  :{Style.RESET_ALL}"
-                f"{Fore.GREEN+Style.BRIGHT} Swap {swap_amount} {from_ticker} to {to_ticker} Success {Style.RESET_ALL}"
+                f"{Fore.CYAN+Style.BRIGHT}     Trạng thái  :{Style.RESET_ALL}"
+                f"{Fore.GREEN+Style.BRIGHT} Swap {swap_amount} {from_ticker} thành {to_ticker} thành công {Style.RESET_ALL}"
             )
             self.log(
                 f"{Fore.CYAN+Style.BRIGHT}     Block   :{Style.RESET_ALL}"
@@ -1363,8 +1363,8 @@ class PharosTestnet:
             )
         else:
             self.log(
-                f"{Fore.CYAN+Style.BRIGHT}     Status  :{Style.RESET_ALL}"
-                f"{Fore.RED+Style.BRIGHT} Perform On-Chain Failed {Style.RESET_ALL}"
+                f"{Fore.CYAN+Style.BRIGHT}     Trạng thái  :{Style.RESET_ALL}"
+                f"{Fore.RED+Style.BRIGHT} Thực hiện On-Chain thất bại {Style.RESET_ALL}"
             )
 
     async def process_option_1(self, address: str, use_proxy: bool):
@@ -1375,7 +1375,7 @@ class PharosTestnet:
             points = profile.get("data", {}).get("user_info", {}).get("TotalPoints", 0)
 
             self.log(
-                f"{Fore.CYAN+Style.BRIGHT}Balance   :{Style.RESET_ALL}"
+                f"{Fore.CYAN+Style.BRIGHT}Số dư   :{Style.RESET_ALL}"
                 f"{Fore.WHITE+Style.BRIGHT} {points} PTS {Style.RESET_ALL}"
             )
 
@@ -1383,17 +1383,17 @@ class PharosTestnet:
         if sign_in and sign_in.get("msg") == "ok":
             self.log(
                 f"{Fore.CYAN+Style.BRIGHT}Check-In  :{Style.RESET_ALL}"
-                f"{Fore.GREEN+Style.BRIGHT} Claimed Successfully {Style.RESET_ALL}"
+                f"{Fore.GREEN+Style.BRIGHT} Nhận thành công {Style.RESET_ALL}"
             )
         elif sign_in and sign_in.get("msg") == "already signed in today":
             self.log(
                 f"{Fore.CYAN+Style.BRIGHT}Check-In  :{Style.RESET_ALL}"
-                f"{Fore.YELLOW+Style.BRIGHT} Already Claimed {Style.RESET_ALL}"
+                f"{Fore.YELLOW+Style.BRIGHT} Đã nhận rồi {Style.RESET_ALL}"
             )
         else:
             self.log(
                 f"{Fore.CYAN+Style.BRIGHT}Check-In  :{Style.RESET_ALL}"
-                f"{Fore.RED+Style.BRIGHT} Not Claimed {Style.RESET_ALL}"
+                f"{Fore.RED+Style.BRIGHT} Chưa nhận {Style.RESET_ALL}"
             )
 
         faucet_status = await self.faucet_status(address, proxy)
@@ -1406,38 +1406,38 @@ class PharosTestnet:
                     self.log(
                         f"{Fore.CYAN+Style.BRIGHT}Faucet    :{Style.RESET_ALL}"
                         f"{Fore.WHITE+Style.BRIGHT} 0.2 PHRS {Style.RESET_ALL}"
-                        f"{Fore.GREEN+Style.BRIGHT}Claimed Successfully{Style.RESET_ALL}"
+                        f"{Fore.GREEN+Style.BRIGHT}Nhận thành công{Style.RESET_ALL}"
                     )
                 elif claim and claim.get("msg") == "user has not bound X account":
                     self.log(
                         f"{Fore.CYAN+Style.BRIGHT}Faucet    :{Style.RESET_ALL}"
-                        f"{Fore.RED+Style.BRIGHT} Not Eligible to Claim {Style.RESET_ALL}"
+                        f"{Fore.RED+Style.BRIGHT} Không đủ điều kiện nhận {Style.RESET_ALL}"
                         f"{Fore.MAGENTA+Style.BRIGHT}-{Style.RESET_ALL}"
-                        f"{Fore.YELLOW+Style.BRIGHT} Bind X Account First {Style.RESET_ALL}"
+                        f"{Fore.YELLOW+Style.BRIGHT} Liên kết tài khoản X trước {Style.RESET_ALL}"
                     )
                 else:
                     self.log(
                         f"{Fore.CYAN+Style.BRIGHT}Faucet    :{Style.RESET_ALL}"
-                        f"{Fore.RED+Style.BRIGHT} Not Claimed {Style.RESET_ALL}"
+                        f"{Fore.RED+Style.BRIGHT} Chưa nhận {Style.RESET_ALL}"
                     )
             else:
                 faucet_available_ts = faucet_status.get("data", {}).get("avaliable_timestamp", None)
                 faucet_available_wib = datetime.fromtimestamp(faucet_available_ts).astimezone(wib).strftime('%x %X %Z')
                 self.log(
                     f"{Fore.CYAN+Style.BRIGHT}Faucet    :{Style.RESET_ALL}"
-                    f"{Fore.YELLOW+Style.BRIGHT} Already Claimed {Style.RESET_ALL}"
+                    f"{Fore.YELLOW+Style.BRIGHT} Đã nhận rồi {Style.RESET_ALL}"
                     f"{Fore.MAGENTA+Style.BRIGHT}-{Style.RESET_ALL}"
-                    f"{Fore.CYAN+Style.BRIGHT} Available at: {Style.RESET_ALL}"
+                    f"{Fore.CYAN+Style.BRIGHT} Có thể nhận lúc: {Style.RESET_ALL}"
                     f"{Fore.WHITE+Style.BRIGHT}{faucet_available_wib}{Style.RESET_ALL}"
                 )
         else:
             self.log(
                 f"{Fore.CYAN+Style.BRIGHT}Faucet    :{Style.RESET_ALL}"
-                f"{Fore.RED+Style.BRIGHT} GET Eligibility Status Failed {Style.RESET_ALL}"
+                f"{Fore.RED+Style.BRIGHT} Lấy trạng thái đủ điều kiện thất bại {Style.RESET_ALL}"
             )
 
     async def process_option_2(self, account: str, address: str, use_proxy: bool):
-        self.log(f"{Fore.CYAN+Style.BRIGHT}Transfer  :{Style.RESET_ALL}                       ")
+        self.log(f"{Fore.CYAN+Style.BRIGHT}Chuyển  :{Style.RESET_ALL}                       ")
         await asyncio.sleep(5)
 
         for i in range(self.tx_count):
@@ -1454,11 +1454,11 @@ class PharosTestnet:
                 f"{Fore.WHITE+Style.BRIGHT} {balance} PHRS {Style.RESET_ALL}"
             )
             self.log(
-                f"{Fore.CYAN+Style.BRIGHT}     Amount  :{Style.RESET_ALL}"
+                f"{Fore.CYAN+Style.BRIGHT}     Số lượng  :{Style.RESET_ALL}"
                 f"{Fore.WHITE+Style.BRIGHT} {self.tx_amount} PHRS {Style.RESET_ALL}"
             )
             self.log(
-                f"{Fore.CYAN+Style.BRIGHT}     Receiver:{Style.RESET_ALL}"
+                f"{Fore.CYAN+Style.BRIGHT}     Người nhận:{Style.RESET_ALL}"
                 f"{Fore.WHITE+Style.BRIGHT} {receiver} {Style.RESET_ALL}"
             )
 
@@ -1474,7 +1474,7 @@ class PharosTestnet:
 
     async def process_option_3(self, account: str, address: str, use_proxy):
         if self.wrap_option == 1:
-            self.log(f"{Fore.CYAN+Style.BRIGHT}Wrapped   :{Style.RESET_ALL}                      ")
+            self.log(f"{Fore.CYAN+Style.BRIGHT}Wrap   :{Style.RESET_ALL}                      ")
 
             balance = await self.get_token_balance(address, "PHRS", use_proxy)
             self.log(
@@ -1496,7 +1496,7 @@ class PharosTestnet:
             await self.process_perform_wrapped(account, address, use_proxy)
         
         elif self.wrap_option == 2:
-            self.log(f"{Fore.CYAN+Style.BRIGHT}Unwrapped :{Style.RESET_ALL}                      ")
+            self.log(f"{Fore.CYAN+Style.BRIGHT}Unwrap :{Style.RESET_ALL}                      ")
 
             balance = await self.get_token_balance(address, self.WPHRS_CONTRACT_ADDRESS, use_proxy)
             self.log(
@@ -1518,26 +1518,26 @@ class PharosTestnet:
             await self.process_perform_unwrapped(account, address, use_proxy)
 
     async def process_option_4(self, account: str, address: str, use_proxy: bool):
-        self.log(f"{Fore.CYAN+Style.BRIGHT}Liquidity :{Style.RESET_ALL}                       ")
+        self.log(f"{Fore.CYAN+Style.BRIGHT}Thanh khoản :{Style.RESET_ALL}                       ")
 
         for i in range(self.add_lp_count):
             self.log(
                 f"{Fore.MAGENTA+Style.BRIGHT}   ● {Style.RESET_ALL}"
-                f"{Fore.GREEN+Style.BRIGHT}Add Liquidity{Style.RESET_ALL}"
+                f"{Fore.GREEN+Style.BRIGHT}Thêm thanh khoản{Style.RESET_ALL}"
                 f"{Fore.WHITE+Style.BRIGHT} {i+1} / {self.add_lp_count} {Style.RESET_ALL}                           "
             )
 
             add_lp_option, token0, token1, amount0, amount1, ticker0, ticker1 = self.generate_add_lp_option()
 
             self.log(
-                f"{Fore.CYAN+Style.BRIGHT}     Type    :{Style.RESET_ALL}"
+                f"{Fore.CYAN+Style.BRIGHT}     Loại    :{Style.RESET_ALL}"
                 f"{Fore.GREEN+Style.BRIGHT} {ticker0} / {ticker1} {Style.RESET_ALL}                "
             )
 
             token0_balance = await self.get_token_balance(address, token0, use_proxy)
             token1_balance = await self.get_token_balance(address, token1, use_proxy)
 
-            self.log(f"{Fore.CYAN+Style.BRIGHT}     Balance :{Style.RESET_ALL}")
+            self.log(f"{Fore.CYAN+Style.BRIGHT}     Số dư :{Style.RESET_ALL}")
             self.log(
                 f"{Fore.MAGENTA+Style.BRIGHT}        > {Style.RESET_ALL}"
                 f"{Fore.WHITE+Style.BRIGHT}{token0_balance} {ticker0}{Style.RESET_ALL}"
@@ -1547,7 +1547,7 @@ class PharosTestnet:
                 f"{Fore.WHITE+Style.BRIGHT}{token1_balance} {ticker1}{Style.RESET_ALL}"
             )
 
-            self.log(f"{Fore.CYAN+Style.BRIGHT}     Amount  :{Style.RESET_ALL}")
+            self.log(f"{Fore.CYAN+Style.BRIGHT}     Số lượng  :{Style.RESET_ALL}")
             self.log(
                 f"{Fore.MAGENTA+Style.BRIGHT}        > {Style.RESET_ALL}"
                 f"{Fore.WHITE+Style.BRIGHT}{amount0} {ticker0}{Style.RESET_ALL}"
@@ -1559,14 +1559,14 @@ class PharosTestnet:
 
             if not token0_balance or token0_balance <= amount0:
                 self.log(
-                    f"{Fore.CYAN+Style.BRIGHT}     Status  :{Style.RESET_ALL}"
-                    f"{Fore.YELLOW+Style.BRIGHT} Insufficient {ticker0} Token Balance {Style.RESET_ALL}"
+                    f"{Fore.CYAN+Style.BRIGHT}     Trạng thái  :{Style.RESET_ALL}"
+                    f"{Fore.YELLOW+Style.BRIGHT} Số dư {ticker0} không đủ {Style.RESET_ALL}"
                 )
                 break
             if not token1_balance or token1_balance <= amount1:
                 self.log(
-                    f"{Fore.CYAN+Style.BRIGHT}     Status  :{Style.RESET_ALL}"
-                    f"{Fore.YELLOW+Style.BRIGHT} Insufficient {ticker1} Token Balance {Style.RESET_ALL}"
+                    f"{Fore.CYAN+Style.BRIGHT}     Trạng thái  :{Style.RESET_ALL}"
+                    f"{Fore.YELLOW+Style.BRIGHT} Số dư {ticker1} không đủ {Style.RESET_ALL}"
                 )
                 break
 
@@ -1586,7 +1586,7 @@ class PharosTestnet:
             from_token, to_token, from_ticker, to_ticker, swap_amount = self.generate_swap_option()
 
             self.log(
-                f"{Fore.CYAN+Style.BRIGHT}     Type    :{Style.RESET_ALL}"
+                f"{Fore.CYAN+Style.BRIGHT}     Loại    :{Style.RESET_ALL}"
                 f"{Fore.GREEN+Style.BRIGHT} {from_ticker} {Style.RESET_ALL}"
                 f"{Fore.MAGENTA+Style.BRIGHT}-{Style.RESET_ALL}"
                 f"{Fore.GREEN+Style.BRIGHT} {to_ticker} {Style.RESET_ALL}"
@@ -1594,18 +1594,18 @@ class PharosTestnet:
 
             balance = await self.get_token_balance(address, from_token, use_proxy)
             self.log(
-                f"{Fore.CYAN+Style.BRIGHT}     Balance :{Style.RESET_ALL}"
+                f"{Fore.CYAN+Style.BRIGHT}     Số dư :{Style.RESET_ALL}"
                 f"{Fore.WHITE+Style.BRIGHT} {balance} {from_ticker} {Style.RESET_ALL}"
             )
             self.log(
-                f"{Fore.CYAN+Style.BRIGHT}     Amount  :{Style.RESET_ALL}"
+                f"{Fore.CYAN+Style.BRIGHT}     Số lượng  :{Style.RESET_ALL}"
                 f"{Fore.WHITE+Style.BRIGHT} {swap_amount} {from_ticker} {Style.RESET_ALL}"
             )
 
             if not balance or balance <= swap_amount:
                 self.log(
-                    f"{Fore.CYAN+Style.BRIGHT}     Status  :{Style.RESET_ALL}"
-                    f"{Fore.YELLOW+Style.BRIGHT} Insufficient {from_ticker} Token Balance {Style.RESET_ALL}"
+                    f"{Fore.CYAN+Style.BRIGHT}     Trạng thái  :{Style.RESET_ALL}"
+                    f"{Fore.YELLOW+Style.BRIGHT} Số dư {from_ticker} không đủ {Style.RESET_ALL}"
                 )
                 continue
 
@@ -1618,24 +1618,24 @@ class PharosTestnet:
 
             if option == 1:
                 self.log(
-                    f"{Fore.CYAN+Style.BRIGHT}Option    :{Style.RESET_ALL}"
-                    f"{Fore.BLUE+Style.BRIGHT} Check-In - Claim PHRS Faucet {Style.RESET_ALL}"
+                    f"{Fore.CYAN+Style.BRIGHT}Tùy chọn    :{Style.RESET_ALL}"
+                    f"{Fore.BLUE+Style.BRIGHT} Check-In - Nhận PHRS Faucet {Style.RESET_ALL}"
                 )
 
                 await self.process_option_1(address, use_proxy)
 
             elif option == 2:
                 self.log(
-                    f"{Fore.CYAN+Style.BRIGHT}Option    :{Style.RESET_ALL}"
-                    f"{Fore.BLUE+Style.BRIGHT} Send To Friends {Style.RESET_ALL}"
+                    f"{Fore.CYAN+Style.BRIGHT}Tùy chọn    :{Style.RESET_ALL}"
+                    f"{Fore.BLUE+Style.BRIGHT} Gửi cho bạn bè {Style.RESET_ALL}"
                 )
 
                 await self.process_option_2(account, address, use_proxy)
 
             elif option == 3:
-                wrap_type = "Wrap PHRS to WPHRS" if self.wrap_amount == 1 else "Unwrap WPHRS to PHRS"
+                wrap_type = "Wrap PHRS thành WPHRS" if self.wrap_amount == 1 else "Unwrap WPHRS thành PHRS"
                 self.log(
-                    f"{Fore.CYAN+Style.BRIGHT}Option    :{Style.RESET_ALL}"
+                    f"{Fore.CYAN+Style.BRIGHT}Tùy chọn    :{Style.RESET_ALL}"
                     f"{Fore.BLUE+Style.BRIGHT} {wrap_type} {Style.RESET_ALL}"
                 )
                 
@@ -1643,15 +1643,15 @@ class PharosTestnet:
 
             elif option == 4:
                 self.log(
-                    f"{Fore.CYAN+Style.BRIGHT}Option    :{Style.RESET_ALL}"
-                    f"{Fore.BLUE+Style.BRIGHT} Add Liquidity Pool {Style.RESET_ALL}"
+                    f"{Fore.CYAN+Style.BRIGHT}Tùy chọn    :{Style.RESET_ALL}"
+                    f"{Fore.BLUE+Style.BRIGHT} Thêm thanh khoản {Style.RESET_ALL}"
                 )
 
                 await self.process_option_4(account, address, use_proxy)
 
             elif option == 5:
                 self.log(
-                    f"{Fore.CYAN+Style.BRIGHT}Option    :{Style.RESET_ALL}"
+                    f"{Fore.CYAN+Style.BRIGHT}Tùy chọn    :{Style.RESET_ALL}"
                     f"{Fore.BLUE+Style.BRIGHT} Swap WPHRS - USDC - USDT  {Style.RESET_ALL}"
                 )
 
@@ -1659,8 +1659,8 @@ class PharosTestnet:
 
             else:
                 self.log(
-                    f"{Fore.CYAN+Style.BRIGHT}Option    :{Style.RESET_ALL}"
-                    f"{Fore.BLUE+Style.BRIGHT} Run All Features {Style.RESET_ALL}"
+                    f"{Fore.CYAN+Style.BRIGHT}Tùy chọn    :{Style.RESET_ALL}"
+                    f"{Fore.BLUE+Style.BRIGHT} Chạy tất cả tính năng {Style.RESET_ALL}"
                 )
 
                 await self.process_option_1(address, use_proxy)
@@ -1693,7 +1693,7 @@ class PharosTestnet:
                 self.clear_terminal()
                 self.welcome()
                 self.log(
-                    f"{Fore.GREEN + Style.BRIGHT}Account's Total: {Style.RESET_ALL}"
+                    f"{Fore.GREEN + Style.BRIGHT}Tổng số tài khoản: {Style.RESET_ALL}"
                     f"{Fore.WHITE + Style.BRIGHT}{len(accounts)}{Style.RESET_ALL}"
                 )
 
@@ -1714,8 +1714,8 @@ class PharosTestnet:
 
                         if not address or not signature:
                             self.log(
-                                f"{Fore.CYAN + Style.BRIGHT}Status    :{Style.RESET_ALL}"
-                                f"{Fore.RED + Style.BRIGHT} Invalid Private Key or Library Version Not Supported {Style.RESET_ALL}"
+                                f"{Fore.CYAN + Style.BRIGHT}Trạng thái    :{Style.RESET_ALL}"
+                                f"{Fore.RED + Style.BRIGHT} Private Key không hợp lệ hoặc phiên bản thư viện không được hỗ trợ {Style.RESET_ALL}"
                             )
                             continue
 
@@ -1733,17 +1733,17 @@ class PharosTestnet:
                         f"{Fore.WHITE+Style.BRIGHT} {formatted_time} {Style.RESET_ALL}"
                         f"{Fore.CYAN+Style.BRIGHT}... ]{Style.RESET_ALL}"
                         f"{Fore.WHITE+Style.BRIGHT} | {Style.RESET_ALL}"
-                        f"{Fore.BLUE+Style.BRIGHT}All Accounts Have Been Processed.{Style.RESET_ALL}",
+                        f"{Fore.BLUE+Style.BRIGHT}Tất cả tài khoản đã được xử lý.{Style.RESET_ALL}",
                         end="\r"
                     )
                     await asyncio.sleep(1)
                     seconds -= 1
 
         except FileNotFoundError:
-            self.log(f"{Fore.RED}File 'accounts.txt' Not Found.{Style.RESET_ALL}")
+            self.log(f"{Fore.RED}Không tìm thấy file 'accounts.txt'.{Style.RESET_ALL}")
             return
         except Exception as e:
-            self.log(f"{Fore.RED+Style.BRIGHT}Error: {e}{Style.RESET_ALL}")
+            self.log(f"{Fore.RED+Style.BRIGHT}Lỗi: {e}{Style.RESET_ALL}")
             raise e
 
 if __name__ == "__main__":
@@ -1754,5 +1754,5 @@ if __name__ == "__main__":
         print(
             f"{Fore.CYAN + Style.BRIGHT}[ {datetime.now().astimezone(wib).strftime('%x %X %Z')} ]{Style.RESET_ALL}"
             f"{Fore.WHITE + Style.BRIGHT} | {Style.RESET_ALL}"
-            f"{Fore.RED + Style.BRIGHT}[ EXIT ] Pharos Testnet - BOT{Style.RESET_ALL}                                       "                              
+            f"{Fore.RED + Style.BRIGHT}[ THOÁT ] Pharos Testnet - BOT{Style.RESET_ALL}                                       "                              
         )
